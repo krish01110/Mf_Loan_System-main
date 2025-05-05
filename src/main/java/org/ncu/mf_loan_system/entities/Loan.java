@@ -1,6 +1,10 @@
 package org.ncu.mf_loan_system.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PastOrPresent;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,20 +14,25 @@ import java.util.List;
 @Entity
 @Table(name = "loans")
 public class Loan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
+    @Positive(message = "Principal amount must be positive")
     private BigDecimal principalAmount;
 
     @Column(nullable = false)
+    @Positive(message = "Interest rate must be positive")
     private BigDecimal interestRate;
 
     @Column(nullable = false)
+    @PastOrPresent(message = "Start date cannot be in the future")
     private LocalDate startDate;
 
     @Column(nullable = false)
+    @PastOrPresent(message = "End date cannot be in the future")
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
@@ -37,7 +46,6 @@ public class Loan {
     private List<Payment> payments = new ArrayList<>();
 
     // Constructors, getters, setters
-
 
     public Long getId() {
         return id;
@@ -120,4 +128,13 @@ public class Loan {
                 ", payments=" + payments +
                 '}';
     }
+
+    // Add @Transactional annotation on service methods handling database operations
+    // Example: @Transactional
+    // This can be added to the service layer (not in the entity class).
+
+    // Jackson annotations to manage serialization
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate paymentDate;  // Format payment date
 }

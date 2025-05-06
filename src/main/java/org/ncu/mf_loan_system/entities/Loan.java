@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PastOrPresent;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

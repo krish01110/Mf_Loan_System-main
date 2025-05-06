@@ -30,10 +30,10 @@ public class Client {
     private String phone;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore // Prevent circular reference issues when serializing
+    @JsonIgnore
     private List<Loan> loans = new ArrayList<>();
 
-    // Constructors, getters, setters
+    // Getters and Setters
 
     public Long getId() {
         return id;

@@ -128,12 +128,8 @@ public class Loan {
                 '}';
     }
 
-    // Add @Transactional annotation on service methods handling database operations
-    // Example: @Transactional
-    // This can be added to the service layer (not in the entity class).
 
-    // Jackson annotations to manage serialization
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate paymentDate;  // Format payment date
+    private LocalDate paymentDate;
 }
